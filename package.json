@@ -1,0 +1,26 @@
+{
+  "name": "first-node-package",
+  "version": "1.0.0",
+  "description": "My first node package",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"nodemon server.js\" \"cd ../travel-app/client && npm start\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "concurrently": "^5.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.5",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0"
+  },
+  "engines": {
+    "node": "11.7"
+  }
+}
