@@ -1,4 +1,4 @@
-const dbURI = process.env.MONGO_URI;
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 
 require("./passport")(passport);
+
+const dbURI = process.env.MONGO_URI;
 
 app.use(
   bodyParser.urlencoded({
