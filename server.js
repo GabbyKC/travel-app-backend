@@ -1,4 +1,4 @@
-const dbURI = process.env.MONGO_URI || require("./keys").mongoURI;
+const dbURI = process.env.MONGO_URI;
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");

@@ -6,7 +6,7 @@ const {check, validationResult} = require('express-validator');
 const passport = require("passport");
 
 const userModel = require('../model/userModel');
-const secretKey = process.env.JWT_SECRET || require('../keys').secret;
+const secretKey = process.env.JWT_SECRET;
 const saltRounds = 10;
 
 router.post('/', [
