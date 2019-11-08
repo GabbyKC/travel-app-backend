@@ -1,4 +1,4 @@
-const db = require("./keys").mongoURI;
+const dbURI = process.env.MONGO_URI || require("./keys").mongoURI;
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -21,7 +21,7 @@ app.use("/cities", require("./routes/cities"));
 app.use("/users", require("./routes/users"));
 
 mongoose
-  .connect(db, {
+  .connect(dbURI, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
