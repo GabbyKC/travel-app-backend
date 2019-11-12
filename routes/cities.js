@@ -7,6 +7,7 @@ const itineraryModel = require("../model/itineraryModel");
 router.get('/', (req, res) => {
     cityModel
         .find({})
+        .sort({name: 1})
         .then(cities => {
             res.send(cities);
         })
