@@ -117,13 +117,13 @@ router.post('/favoriteItineraries/:itineraryId',
                                 }]
                             }).execPopulate()//necessary when populating on save()
                                 .then(user =>
-                                res.json({
-                                    id: user._id,
-                                    userName: user.name,
-                                    email: user.email,
-                                    favoriteItineraries: user.favoriteItineraries,
-                                })
-                            );
+                                    res.json({
+                                        id: user._id,
+                                        userName: user.name,
+                                        email: user.email,
+                                        favoriteItineraries: user.favoriteItineraries,
+                                    })
+                                );
                         })
                 } else {
                     res.status(409).send()
@@ -138,10 +138,11 @@ router.delete('/favoriteItineraries/:itineraryId',
         userModel
             .findOne({_id: req.user.id})
             .then(user => {
-                const itineraryId = req.params.itineraryId;
-                if (user.favoriteItineraries.includes(itineraryId)) {
-                    user.favoriteItineraries.pop(itineraryId);
-
+                const itineraryToRemove = req.params.itineraryId;
+                if (user.favoriteItineraries.includes(itineraryToRemove)) {
+                    user.favoriteItineraries = user.favoriteItineraries.filter(function (itineraryId) {
+                        return itineraryId.toString() !== itineraryToRemove;
+                    });
                     user.save()
                         .then(user => {
                             user.populate({
@@ -153,13 +154,13 @@ router.delete('/favoriteItineraries/:itineraryId',
                                 }]
                             }).execPopulate()//necessary when populating on save()
                                 .then(user =>
-                                res.json({
-                                    id: user._id,
-                                    userName: user.name,
-                                    email: user.email,
-                                    favoriteItineraries: user.favoriteItineraries,
-                                })
-                            );
+                                    res.json({
+                                        id: user._id,
+                                        userName: user.name,
+                                        email: user.email,
+                                        favoriteItineraries: user.favoriteItineraries,
+                                    })
+                                );
                         })
                 } else {
                     res.status(404).send()
